@@ -2,7 +2,7 @@ const { getTeams, addTeam } = require('../db/consultas')
 
 const obtenerEquipos = async (req, res) => {
     const equipos = await getTeams()
-    res.json(equipos)
+    return res.status(200).json(equipos);
 }
 
 const agregarEquipo = async (req, res) => {
