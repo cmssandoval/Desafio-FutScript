@@ -50,7 +50,7 @@ const logUser = async ({ username, password }) => {
         const query = 'SELECT username FROM usuarios WHERE username = $1 AND password = $2';
         const values = [username, password];
         const result = await pool.query(query,values);
-        if ( result.rowCount === 0 ) return res.status(400).json({ message: 'Invalid credentials', });
+        if ( result.rowCount === 0 ) return { message: 'Invalid credentials' };
         return result.rows[0];
     } catch (error) {
         return error;

@@ -6,6 +6,7 @@ const loginUsuario = async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await logUser({ username, password });
+        if ( user.message ) return res.status(400).json(user.message);
         const token = jwt.sign( user, secretKey );
         
         return req.status(200).json({token});
