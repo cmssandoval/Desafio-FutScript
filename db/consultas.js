@@ -25,8 +25,10 @@ try {
         FROM jugadores
         INNER JOIN posiciones
         ON jugadores.position = posiciones.id
+        INNER JOIN equipos
+        ON jugadores.id_equipos = equipos.id 
     `;
-    const result = pool.query(query);
+    const result = await pool.query(query);
     return result.rows;
 } catch (error) {
     return error;
@@ -37,7 +39,10 @@ const addTeam = async (equipo) => {
 }
 
 const addPlayer = async ({ jugador, teamID }) => {
-    //...
+    const query = 'INSERT INTO jugadores values (DEFAULT, $1, $2, $3)';
+    const values = [teamID, jugador.name, jugador.posicion];
+    const result = await pool.query( query, values );
+    return result.rows;
 }
 
 const logUser = async ({ username, password }) => {
@@ -45,6 +50,7 @@ const logUser = async ({ username, password }) => {
         const query = 'SELECT username FROM usuarios WHERE username = $1 AND password = $2';
         const values = [username, password];
         const result = await pool.query(query,values);
+        if ( result.rowCount === 0 ) return res.status(400).json({ message: 'Invalid credentials', });
         return result.rows[0];
     } catch (error) {
         return error;
