@@ -12,3 +12,9 @@ INSERT INTO posiciones values
 (DEFAULT, 'centrocampista'),
 (DEFAULT, 'defensa'),
 (DEFAULT, 'portero');
+
+SELECT * FROM equipos;
+
+SELECT * FROM jugadores;
+
+SELECT * FROM posiciones;
