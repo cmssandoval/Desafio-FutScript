@@ -9,7 +9,13 @@ const pool = new Pool({
 })
 
 const getTeams = async () => {
-    //...
+    try {
+        const query = 'SELECT * FROM equipos';
+        const response = await pool.query(query);
+        return response.rows;
+    } catch (error) {
+        return error;
+    }
 }
 
 const getPlayers = async (teamID) => {
