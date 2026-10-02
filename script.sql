@@ -9,6 +9,8 @@ CREATE TABLE jugadores (id SERIAL PRIMARY KEY, id_equipo INT REFERENCES equipos(
 
 CREATE TABLE usuarios (id serial PRIMARY KEY, username VARCHAR(50) NOT NULL UNIQUE, password VARCHAR(70) NOT NULL UNIQUE);
 
+INSERT INTO equipos values (DEFAULT, 'equipo 1');
+
 INSERT INTO posiciones values
 (DEFAULT, 'delantero'),
 (DEFAULT, 'centrocampista'),
