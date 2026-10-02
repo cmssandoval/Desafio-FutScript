@@ -10,9 +10,9 @@ const { loginUsuario } = require('./controllers/usuarios')
 
 
 app.get("/equipos", obtenerEquipos)
-app.post("/equipos", agregarEquipo)
+app.post("/equipos", validarToken, agregarEquipo)
 
 app.get("/equipos/:teamID/jugadores", obtenerJugadores)
-app.post("/equipos/:teamID/jugadores", registrarJugador)
+app.post("/equipos/:teamID/jugadores", validarToken, registrarJugador)
 
 app.post("/login", loginUsuario)
