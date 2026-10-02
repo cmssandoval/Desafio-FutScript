@@ -24,4 +24,15 @@ const addPlayer = async ({ jugador, teamID }) => {
     //...
 }
 
-module.exports = { getTeams, addTeam, getPlayers, addPlayer }
+const logUser = async ({ username, password }) => {
+    try {
+        const query = 'SELECT username FROM usuarios WHERE username = $1 AND password = $2';
+        const values = [username, password];
+        const response = await pool.query(query,values);
+        return response.rows[0];
+    } catch (error) {
+        return error;
+    }
+}
+
+module.exports = { getTeams, addTeam, getPlayers, addPlayer, logUser }
