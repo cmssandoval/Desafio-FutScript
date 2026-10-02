@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const { validarToken } = require('./middlewares/validarToken.middleware');
 
 app.listen(3000, console.log("SERVER ON"));
 app.use(express.json())
@@ -16,3 +17,5 @@ app.get("/equipos/:teamID/jugadores", obtenerJugadores)
 app.post("/equipos/:teamID/jugadores", validarToken, registrarJugador)
 
 app.post("/login", loginUsuario)
+
+module.exports = { app };
