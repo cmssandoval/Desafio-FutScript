@@ -1,14 +1,14 @@
 const { logUser } = require('../db/consultas');
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = 'SECRETO';
+const { secretKey } = require('../utils');
 
 const loginUsuario = async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await logUser({ username, password });
-        const token = jwt.sign( user, JWT_SECRET );
+        const token = jwt.sign( user, secretKey );
         
-        return req.status(200).json(token);
+        return req.status(200).json({token});
 
     } catch (error) {
         
